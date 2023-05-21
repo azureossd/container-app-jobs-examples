@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: manual-job
+spec:
+  # 'completions' determine how many times to run the job. 
+  # here, we define two (2) times
+  # run 'kubectl get jobs' to validate 'COMPLETIONS'
+  completions: 2
+  template:
+    spec:
+      containers:
+      - name: manual-job
+        image: container-app-jobs-examples-manual:latest
+        imagePullPolicy: IfNotPresent
+        command: ["php"]
+        args:
+          - index.php
+      restartPolicy: Never
+  backoffLimit: 4
