@@ -35,7 +35,9 @@ function prettifyCoindeskResponse($c) {
         print_r("Description: " . $value->description . PHP_EOL);
         print_r(PHP_EOL);
     }
+    // Exit after completion
+    // 0 indicates success
+    exit(0);
 }
 
 prettifyCoindeskResponse($json);
-

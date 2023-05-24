@@ -1,0 +1,27 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledJob
+metadata:
+  name: event-driven
+  namespace: default
+spec:
+  jobTargetRef:
+    template:
+      spec:
+        containers:
+        - name: event-driven
+          env:
+          - name: AZURE_STORAGE_CONNECTION_STRING
+            value: "<YOUR_STORAGE_CONNECTION_STRING"
+          image: container-app-job-examples-event-driven:latest
+          imagePullPolicy: IfNotPresent
+        restartPolicy: Never
+    backoffLimit: 4  
+  minReplicaCount: 1            
+  maxReplicaCount: 1            
+  triggers:
+  - type: azure-blob
+    metadata:
+      blobContainerName: yourStorageContainerName
+      blobCount: '5'
+      connectionFromEnv: AZURE_STORAGE_CONNECTION_STRING
+      accountName: yourStorageAccountName
