@@ -21,7 +21,7 @@ The examples are as follows:
     - A Go application that prints the current time
 
 - `event-driven`:
-    - A Go application that lists all current contains in the specified Azure Storage Account Container
+    - A Go application that lists all current containers in the specified Azure Storage Account Container
         - When running the example as a Event Driven Job, the current default is to run when "5" blobs are present. This can be changed as needed.
         - Update to include your Azure Storage Connection String where needed
 
